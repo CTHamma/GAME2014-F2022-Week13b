@@ -20,9 +20,9 @@ public class PlayerBehaviour : MonoBehaviour
     public Animator animator;
     public PlayerAnimationState playerAnimationState;
 
-    [Header("Dust Trail Efferct")]
+    [Header("Dust Trail Effect")] 
     public ParticleSystem dustTrail;
-    public Color dustTrailColor;
+    public Color dustTrailColour;
 
     [Header("Health System")] 
     public HealthBarController health;
@@ -64,7 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
-        if(life.value <= 0)
+        if (life.value <= 0)
         {
             SceneManager.LoadScene("End");
         }
@@ -97,22 +97,22 @@ public class PlayerBehaviour : MonoBehaviour
             rigidbody2D.velocity = new Vector2(clampedXVelocity, rigidbody2D.velocity.y);
 
             ChangeAnimation(PlayerAnimationState.RUN);
+
+            if (isGrounded)
+            {
+                CreateDustTrail();
+            }
         }
 
         if ((isGrounded) && (x == 0.0f))
         {
             ChangeAnimation(PlayerAnimationState.IDLE);
         }
-
-        if (isGrounded)
-        {
-            CreateDustTrail();
-        }
     }
 
     private void CreateDustTrail()
     {
-        dustTrail.GetComponent<Renderer>().material.SetColor("_Color", dustTrailColor);
+        dustTrail.GetComponent<Renderer>().material.SetColor("_Color", dustTrailColour);
         dustTrail.Play();
     }
 

@@ -9,4 +9,5 @@ public class EndSceneGameController : MonoBehaviour
     {
         FindObjectOfType<SoundManager>().PlayMusic(Sound.END_MUSIC);
     }
+
 }
